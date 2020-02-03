@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :pretty_log, key: :value
+#     config :pretty_loggex, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:pretty_log, :key)
+#     Application.get_env(:pretty_loggex, :key)
 #
 # You can also configure a third-party app:
 #
@@ -32,5 +32,5 @@ use Mix.Config
 # config :logger, level: :info
 
 config :logger, :console,
-  format: {PrettyLog.Formatters.KvFormatter, :format},
+  format: {PrettyLoggex.Formatters.KvFormatter, :format},
   metadata: :all

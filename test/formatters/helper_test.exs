@@ -1,8 +1,8 @@
-defmodule PrettyLog.Formatters.HelperTest do
+defmodule PrettyLoggex.Formatters.HelperTest do
   use ExUnit.Case
 
-  alias PrettyLog.Formatters.Helper
-  alias PrettyLog.TestHelper
+  alias PrettyLoggex.Formatters.Helper
+  alias PrettyLoggex.TestHelper
 
   describe "format_timestamp/1" do
     test "should format to UTC" do

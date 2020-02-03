@@ -1,2 +1,0 @@
-defmodule PrettyLog do
-end

@@ -1,8 +1,8 @@
-defmodule PrettyLog.Formatters.KvFormatterTest do
+defmodule PrettyLoggex.Formatters.KvFormatterTest do
   use ExUnit.Case
 
-  alias PrettyLog.Formatters.KvFormatter
-  alias PrettyLog.TestHelper
+  alias PrettyLoggex.Formatters.KvFormatter
+  alias PrettyLoggex.TestHelper
 
   describe "format/4" do
     test "should return a json" do

@@ -1,4 +1,4 @@
-defmodule PrettyLog.TestHelper do
+defmodule PrettyLoggex.TestHelper do
 
   @spec to_erl_ms(NaiveDateTime.t())
     :: {{year :: integer(), month :: integer(), day :: integer},
@@ -12,7 +12,7 @@ defmodule PrettyLog.TestHelper do
       minute: min,
       second: s,
       microsecond: microsecond
-      } = NaiveDateTime.utc_now()
+      } = naive_dt
     {ms, _} = Integer.parse("#{elem(microsecond, 0) / 1000}")
 
     {{y, m, d}, {h, min, s, ms}}

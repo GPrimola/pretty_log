@@ -1,5 +1,5 @@
-defmodule PrettyLog.Formatters.KvFormatter do
-  import PrettyLog.Formatters.Helper
+defmodule PrettyLoggex.Formatters.KvFormatter do
+  import PrettyLoggex.Formatters.Helper
 
   def format(level, message, timestamp, metadata) do
     [timestamp: format_timestamp(timestamp), level: level]

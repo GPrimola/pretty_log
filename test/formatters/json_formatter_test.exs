@@ -1,8 +1,8 @@
-defmodule PrettyLog.Formatters.JsonFormatterTest do
+defmodule PrettyLoggex.Formatters.JsonFormatterTest do
   use ExUnit.Case
 
-  alias PrettyLog.Formatters.JsonFormatter
-  alias PrettyLog.TestHelper
+  alias PrettyLoggex.Formatters.JsonFormatter
+  alias PrettyLoggex.TestHelper
 
   describe "format/4" do
     test "should return a json" do

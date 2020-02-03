@@ -1,4 +1,4 @@
-defmodule PrettyLog.Formatters.Helper do
+defmodule PrettyLoggex.Formatters.Helper do
 
   def format_timestamp({date, {h, m, s, ms}}) do
     miliseconds = {ms*1000, 3}

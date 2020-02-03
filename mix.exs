@@ -1,9 +1,9 @@
-defmodule PrettyLog.MixProject do
+defmodule PrettyLoggex.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :pretty_log,
+      app: :pretty_loggex,
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
