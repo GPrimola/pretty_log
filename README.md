@@ -45,7 +45,7 @@ by adding `pretty_loggex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:pretty_loggex, "~> 0.1.0"}
+    {:pretty_loggex, "~> 1.0.0"}
   ]
 end
 ```

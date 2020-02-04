@@ -5,10 +5,12 @@ defmodule PrettyLoggex.MixProject do
     [
       app: :pretty_loggex,
       version: "1.0.0",
+      description: "Contains formatters to be used by logging apis with improved search.",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
-      deps: deps()
+      deps: deps(),
+      source_url: "https://github.com/gprimola/pretty_loggex"
     ]
   end
 

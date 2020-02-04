@@ -12,6 +12,16 @@ defmodule PrettyLoggex.Formatters.JsonFormatter do
     |> List.insert_at(-1, "\n")
     |> List.insert_at(0, "\n")
     |> List.to_string()
+  rescue
+    error ->
+      """
+      Log couldn't be formatted. Reason: #{inspect(error)}
+      Details:
+        level: #{inspect(level)}
+        message: #{inspect(message)}
+        timestamp: #{inspect(timestamp)}
+        metadata: #{inspect(metadata)}
+      """
   end
 
   defp format_value({key, value})
