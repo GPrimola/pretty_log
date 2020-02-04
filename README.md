@@ -23,7 +23,7 @@ Example:
 
 ### KvFormatter
 
-Formats the Logger output to Key-Value format.
+Formats the Logger output to Key=Value format.
 Example:
 
 ```
@@ -39,17 +39,36 @@ timestamp="2020-02-04T16:47:06.791Z" level=error pid=#PID<0.204.0> line=8 functi
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `pretty_loggex` to your list of dependencies in `mix.exs`:
+Add `pretty_loggex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:pretty_loggex, "~> 1.0.0"}
+    {:pretty_loggex, git: "https://github.com/gprimola/pretty_loggex", tag: "1.0.1"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/pretty_loggex](https://hexdocs.pm/pretty_loggex).
+## Usage
+
+1.  To output the logs in JSON format:
+
+```elixir
+config :logger, :console,
+  format: {PrettyLoggex, :json}
+```
+
+2.  To output the logs in JSON format:
+
+```elixir
+config :logger, :console,
+  format: {PrettyLoggex, :key_value}
+
+# or
+
+config :logger, :console,
+  format: {PrettyLoggex, :kv}
+```
+
+PS.: You can use any logger backend you want.
+In the examples above it was used the standard `:console` backend.
