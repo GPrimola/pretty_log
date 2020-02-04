@@ -9,7 +9,8 @@ defmodule PrettyLoggex.Formatters.JsonFormatter do
     |> Map.new()
     |> Jason.encode!()
     |> String.to_charlist()
-    |> List.insert_at(-1, "\n\n")
+    |> List.insert_at(-1, "\n")
+    |> List.insert_at(0, "\n")
     |> List.to_string()
   end
 

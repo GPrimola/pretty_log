@@ -8,7 +8,8 @@ defmodule PrettyLoggex.Formatters.KvFormatter do
     |> Enum.map(&to_kv/1)
     |> Enum.join(" ")
     |> String.to_charlist()
-    |> List.insert_at(-1, "\n\n")
+    |> List.insert_at(-1, "\n")
+    |> List.insert_at(0, "\n")
     |> List.to_string()
   end
 
