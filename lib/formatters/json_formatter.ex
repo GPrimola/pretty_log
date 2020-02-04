@@ -4,7 +4,7 @@ defmodule PrettyLoggex.Formatters.JsonFormatter do
   def format(level, message, timestamp, metadata) do
     [timestamp: format_timestamp(timestamp), level: level]
     |> Keyword.merge(metadata)
-    |> Keyword.merge([message: message])
+    |> Keyword.merge(message: message)
     |> Enum.map(&format_value/1)
     |> Map.new()
     |> Jason.encode!()
@@ -25,8 +25,8 @@ defmodule PrettyLoggex.Formatters.JsonFormatter do
   end
 
   defp format_value({key, value})
-    when is_pid(value), do: {key, inspect(value)}
+       when is_pid(value),
+       do: {key, inspect(value)}
 
   defp format_value(kv), do: kv
-
 end

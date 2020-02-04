@@ -7,8 +7,7 @@ defmodule PrettyLoggex.Formatters.KvFormatterTest do
   describe "format/4" do
     test "should return a json" do
       timestamp = TestHelper.to_erl_ms(NaiveDateTime.utc_now())
-      formatted_message =
-        KvFormatter.format(:info, "log", timestamp, [])
+      formatted_message = KvFormatter.format(:info, "log", timestamp, [])
 
       assert is_binary(formatted_message)
       assert formatted_message =~ "level="
@@ -18,8 +17,7 @@ defmodule PrettyLoggex.Formatters.KvFormatterTest do
 
     test "should return a json with metadata" do
       timestamp = TestHelper.to_erl_ms(NaiveDateTime.utc_now())
-      formatted_message =
-        KvFormatter.format(:warn, "log", timestamp, [foo: :bar])
+      formatted_message = KvFormatter.format(:warn, "log", timestamp, foo: :bar)
 
       assert is_binary(formatted_message)
       assert formatted_message =~ "level="
