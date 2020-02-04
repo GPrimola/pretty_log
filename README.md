@@ -58,7 +58,7 @@ config :logger, :console,
   format: {PrettyLoggex, :json}
 ```
 
-2.  To output the logs in JSON format:
+2.  To output the logs in Key=Value format:
 
 ```elixir
 config :logger, :console,
