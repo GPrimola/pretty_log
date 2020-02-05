@@ -1,6 +1,5 @@
 # PrettyLoggex
 
-[Experimental]
 PrettyLoggex is a customization for [Elixir.Logger](https://hexdocs.pm/logger/Logger.html) that contains two formatters:
 
 - JsonFormatter
