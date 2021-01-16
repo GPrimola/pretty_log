@@ -1,6 +1,11 @@
 defmodule PrettyLoggex.MixProject do
   use Mix.Project
 
+  @version "1.0.1"
+  @source_url "https://github.com/GPrimola/pretty_loggex"
+  @logo_path ""
+  @licenses ["Apache-2.0"]
+
   def project do
     [
       app: :pretty_loggex,
@@ -10,7 +15,8 @@ defmodule PrettyLoggex.MixProject do
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
-      source_url: "https://github.com/gprimola/pretty_loggex",
+      docs: docs(),
+      source_url: @source_url,
       package: package()
     ]
   end
@@ -28,7 +34,8 @@ defmodule PrettyLoggex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:ex_doc, ">= 0.0.0", runtime: false}
     ]
   end
 
@@ -37,9 +44,17 @@ defmodule PrettyLoggex.MixProject do
       # This option is only needed when you don't want to use the OTP application name
       name: "pretty_loggex",
       # These are the default files included in the package
-      files: ~w(lib .formatter.exs mix.exs README*),
-      licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/gprimola/pretty_loggex"}
+      files: ~w(lib .formatter.exs mix.exs README* VERSION),
+      licenses: @licenses,
+      links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs do
+    [
+      source_ref: "v#{@version}",
+      source_url: @source_url,
+      logo: @logo_path
     ]
   end
 end
