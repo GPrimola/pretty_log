@@ -135,8 +135,8 @@ jobs:
         run: |
           git config user.name Lucasbot
           git config user.email lucas.primola@gmail.com
-          if git tag releases/$(cat version); then
-            git push origin releases/$(cat version) -f
+          if git tag releases/$(cat VERSION); then
+            git push origin releases/$(cat VERSION) -f
           else
             echo "Version already exists."
           fi
