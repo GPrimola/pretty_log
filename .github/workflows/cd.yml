@@ -1,0 +1,131 @@
+name: PrettyLoggex CD
+
+on:
+  workflow_run:
+    workflows: ["PrettyLoggex Master CI"]
+    types:
+      - completed
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: '1.8.x'
+        otp-version: '22.3'
+    - name: Cache Dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          _build/prod/lib
+          deps
+          doc
+          mix.exs
+        key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+        restore-keys: |
+          ${{ runner.os }}-mix-prod-
+
+    - name: Update Version
+      run: elixir ./scripts/update_version.exs
+
+    - name: Install Dependencies
+      run: mix deps.get
+
+    - name: Build Dependencies
+      env:
+        MIX_ENV: prod
+      run: mix deps.compile
+
+    - name: Build PrettyLoggex
+      env:
+        MIX_ENV: prod
+      run: mix compile
+
+    - name: Build Docs
+      run: mix docs
+
+  check_package:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: '1.8.x'
+        otp-version: '22.3'
+    - name: Cache Dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          _build/prod/lib
+          deps
+          doc
+          mix.exs
+        key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+        restore-keys: |
+          ${{ runner.os }}-mix-prod-
+
+    - env:
+        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+      run: mix hex.publish --dry-run
+
+  update_version:
+    runs-on: ubuntu-latest
+    needs: check_package
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Elixir
+        uses: actions/setup-elixir@v1
+        with:
+          elixir-version: '1.8.x'
+          otp-version: '22.3'
+      - name: Update README.md and mix.exs
+        run: |
+          elixir ./scripts/update_version.exs
+          git config user.name Lucasbot
+          git config user.email lucas.primola@gmail.com
+          if [[ -n $(git diff --stat) ]]
+          then
+            git commit -am "Updated README.md and mix.exs to version $(cat version)."
+            git push origin master
+          else
+            echo "Already updated with version."
+          fi
+
+
+  publish_package:
+    runs-on: ubuntu-latest
+    needs: update_version
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: '1.8.x'
+        otp-version: '22.3'
+    - name: Cache Dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          _build/prod/lib
+          deps
+          doc
+          mix.exs
+        key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+        restore-keys: |
+          ${{ runner.os }}-mix-prod-
+
+    - env:
+        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+      run: mix hex.publish --yes

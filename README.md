@@ -20,7 +20,7 @@ PrettyLoggex is a customization for [Elixir.Logger](https://hexdocs.pm/logger/Lo
 > ```elixir
 > def deps do
 >   [
->     {:pretty_loggex, git: "https://github.com/gprimola/pretty_loggex", tag: "1.0.1"}
+>     {:pretty_loggex, "~> 1.0.1"}
 >   ]
 > end
 > ```
