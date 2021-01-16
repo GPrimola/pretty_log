@@ -1,17 +1,15 @@
-![Code coverage](https://codecov.io/gh/sumup/foundry/branch/master/graph/badge.svg?token=<codecov-token>)
-[![License](https://img.shields.io/badge/license--lightgrey.svg)](https://github.com/sumup-oss/<repo-name>/LICENSE)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
-
-<div align="center">
-
 # PrettyLoggex
+![CI](https://github.com/GPrimola/pretty_loggex/workflows/PrettyLoggex%20CI/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/GPrimola/pretty_loggex/badge.svg?branch=master)](https://coveralls.io/github/GPrimola/pretty_loggex?branch=master)
+[![Docs](https://img.shields.io/badge/api-docs-blueviolet.svg?style=flat)](https://hexdocs.pm/pretty_loggex)
+![Hex.pm](https://img.shields.io/hexpm/v/pretty_loggex)
+
 
 PrettyLoggex is a customization for [Elixir.Logger](https://hexdocs.pm/logger/Logger.html) that contains two formatters:
 
 - [JsonFormatter](#jsonformatter)
 - [KvFormatter](#kvformatter)
 
-</div>
 
 > **TLDR;**
 >
