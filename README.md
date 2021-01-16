@@ -1,9 +1,97 @@
+![Code coverage](https://codecov.io/gh/sumup/foundry/branch/master/graph/badge.svg?token=<codecov-token>)
+[![License](https://img.shields.io/badge/license--lightgrey.svg)](https://github.com/sumup-oss/<repo-name>/LICENSE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+
+<div align="center">
+
 # PrettyLoggex
 
 PrettyLoggex is a customization for [Elixir.Logger](https://hexdocs.pm/logger/Logger.html) that contains two formatters:
 
-- JsonFormatter
-- KvFormatter
+- [JsonFormatter](#jsonformatter)
+- [KvFormatter](#kvformatter)
+
+</div>
+
+> **TLDR;**
+>
+> Add `pretty_loggex` to your list of dependencies in `mix.exs`:
+>
+> ```elixir
+> def deps do
+>   [
+>     {:pretty_loggex, git: "https://github.com/gprimola/pretty_loggex", tag: "1.0.1"}
+>   ]
+> end
+> ```
+> - To output the logs in [JSON format](#jsonformatter):
+>
+> ```elixir
+> config :logger, :console,
+>   format: {PrettyLoggex, :json}
+> ```
+>
+> - To output the logs in [Key=Value format](#kvformatter):
+>
+> ```elixir
+> config :logger, :console,
+>   format: {PrettyLoggex, :key_value}
+>
+> # or
+>
+> config :logger, :console,
+>   format: {PrettyLoggex, :kv}
+> ```
+
+##### Table of contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [About SumUp](#about-sumup)
+
+
+
+## Installation
+
+Add `pretty_loggex` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:pretty_loggex, git: "https://github.com/gprimola/pretty_loggex", tag: "1.0.1"}
+  ]
+end
+```
+
+
+
+## Usage
+
+- To output the logs in [JSON format](#jsonformatter):
+
+```elixir
+config :logger, :console,
+  format: {PrettyLoggex, :json}
+```
+
+- To output the logs in [Key=Value format](#kvformatter):
+
+```elixir
+config :logger, :console,
+  format: {PrettyLoggex, :key_value}
+
+# or
+
+config :logger, :console,
+  format: {PrettyLoggex, :kv}
+```
+
+You can use any logger backend you want.
+In the examples above it was used the standard `:console` backend.
+
+
+## Examples
 
 ### JsonFormatter
 
@@ -37,38 +125,23 @@ timestamp="2020-02-04T16:47:06.791Z" level=warn pid=#PID<0.204.0> line=7 functio
 timestamp="2020-02-04T16:47:06.791Z" level=error pid=#PID<0.204.0> line=8 function="start/2" module=Elixir.PrettyLoggex file="lib/pretty_loggex.ex" application=pretty_loggex message="This is a error message"
 ```
 
-## Installation
 
-Add `pretty_loggex` to your list of dependencies in `mix.exs`:
 
-```elixir
-def deps do
-  [
-    {:pretty_loggex, git: "https://github.com/gprimola/pretty_loggex", tag: "1.0.1"}
-  ]
-end
-```
+## Code of conduct (CoC)
 
-## Usage
+We want to foster an inclusive and friendly community around our Open Source efforts. Like all SumUp Open Source projects, this project follows the Contributor Covenant Code of Conduct. Please, [read it and follow it](CODE_OF_CONDUCT.md).
 
-1.  To output the logs in JSON format:
+If you feel another member of the community violated our CoC or you are experiencing problems participating in our community because of another individual's behavior, please get in touch with our maintainers. We will enforce the CoC.
 
-```elixir
-config :logger, :console,
-  format: {PrettyLoggex, :json}
-```
+### Maintainers
 
-2.  To output the logs in Key=Value format:
+- [Giorgio Torres](mailto:giorgio.torres@sumup.com)
 
-```elixir
-config :logger, :console,
-  format: {PrettyLoggex, :key_value}
 
-# or
+## About SumUp
 
-config :logger, :console,
-  format: {PrettyLoggex, :kv}
-```
+![SumUp logo](https://raw.githubusercontent.com/sumup-oss/assets/master/sumup-logo.svg?sanitize=true)
 
-PS.: You can use any logger backend you want.
-In the examples above it was used the standard `:console` backend.
+[SumUp](https://sumup.com) is a mobile-point of sale provider. It is our mission to make easy and fast card payments a reality across the *entire* world. You can pay with SumUp in more than 30 countries, already. Our engineers work in Berlin, Cologne, Sofia, and Sāo Paulo. They write code in JavaScript, Swift, Ruby, Go, Java, Erlang, Elixir, and more.
+
+Want to come work with us? [Head to our careers page](https://sumup.com/careers) to find out more.
