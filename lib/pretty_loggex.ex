@@ -1,5 +1,4 @@
 defmodule PrettyLoggex do
-
   alias PrettyLoggex.Formatters.{JsonFormatter, KvFormatter}
 
   def json(level, message, timestamp, metadata) do
