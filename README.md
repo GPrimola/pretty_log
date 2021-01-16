@@ -1,5 +1,5 @@
 # PrettyLoggex
-![CI](https://github.com/GPrimola/pretty_loggex/workflows/PrettyLoggex%20CI/badge.svg)
+![CI](https://github.com/GPrimola/pretty_loggex/workflows/PrettyLoggex%20Master%20CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/GPrimola/pretty_loggex/badge.svg?branch=master)](https://coveralls.io/github/GPrimola/pretty_loggex?branch=master)
 [![Docs](https://img.shields.io/badge/api-docs-blueviolet.svg?style=flat)](https://hexdocs.pm/pretty_loggex)
 ![Hex.pm](https://img.shields.io/hexpm/v/pretty_loggex)
