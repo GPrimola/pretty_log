@@ -61,8 +61,7 @@ defmodule PrettyLoggex.MixProject do
   defp docs do
     [
       source_ref: "v#{@version}",
-      source_url: @source_url,
-      logo: @logo_path
+      source_url: @source_url
     ]
   end
 end
