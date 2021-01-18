@@ -96,7 +96,7 @@ jobs:
           git config user.email lucas.primola@gmail.com
           if [[ -n $(git diff --stat) ]]
           then
-            git commit -am "Updated README.md and mix.exs to version $(cat version)."
+            git commit -am "Updated README.md and mix.exs to version $(cat VERSION)."
             git push origin master
           else
             echo "Already updated with version."
