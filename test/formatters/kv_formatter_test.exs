@@ -28,7 +28,9 @@ defmodule PrettyLoggex.Formatters.KvFormatterTest do
 
     test "message should appear with quotes" do
       timestamp = TestHelper.to_erl_ms(NaiveDateTime.utc_now())
-      formatted_message = KvFormatter.format(:warn, "this message should appear with quotes", timestamp, foo: :bar)
+
+      formatted_message =
+        KvFormatter.format(:warn, "this message should appear with quotes", timestamp, foo: :bar)
 
       assert is_binary(formatted_message)
       assert formatted_message =~ "level="
