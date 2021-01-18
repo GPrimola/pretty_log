@@ -3,7 +3,6 @@ defmodule PrettyLoggex.MixProject do
 
   @version "1.0.1"
   @source_url "https://github.com/GPrimola/pretty_loggex"
-  @logo_path ""
   @licenses ["Apache-2.0"]
 
   def project do

@@ -57,7 +57,7 @@ Add `pretty_loggex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:pretty_loggex, git: "https://github.com/gprimola/pretty_loggex", tag: "1.0.1"}
+    {:pretty_loggex, "~> 1.0.1"}
   ]
 end
 ```
