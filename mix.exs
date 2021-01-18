@@ -1,7 +1,7 @@
 defmodule PrettyLoggex.MixProject do
   use Mix.Project
 
-  @version "1.0.1"
+  @version "1.0.2"
   @source_url "https://github.com/GPrimola/pretty_loggex"
   @licenses ["Apache-2.0"]
 
