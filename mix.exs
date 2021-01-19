@@ -8,7 +8,7 @@ defmodule PrettyLoggex.MixProject do
   def project do
     [
       app: :pretty_loggex,
-      version: "1.0.1",
+      version: @version,
       description: "Contains formatters to be used by logging apis with improved search.",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
