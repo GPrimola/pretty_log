@@ -89,7 +89,7 @@ jobs:
 
   publish_package:
     runs-on: ubuntu-latest
-    needs: update_version
+    needs: check_package
 
     steps:
     - uses: actions/checkout@v2
