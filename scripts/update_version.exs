@@ -20,6 +20,7 @@
 # else: raise "Could not update #{readme_file} to version #{version}. #{inspect(readme_file_update)}"
 
 defmodule UpdateVersion do
+  @application ":pretty_loggex"
   @version_file "./VERSION"
   @mix_exs_file "./mix.exs"
   @readme_file "./README.md"
@@ -56,7 +57,7 @@ defmodule UpdateVersion do
 
   def update_readme(readme, version) do
     IO.puts("Updating #{@readme_file}...")
-    readme = String.replace(readme, ~r/{:yamel, \"~> .*\"}/, "{:yamel, \"~> #{version}\"}")
+    readme = String.replace(readme, ~r/{#{@application}, \"~> .*\"}/, "{@application, \"~> #{version}\"}")
 
     case File.write!(@readme_file, readme) do
       :ok ->
