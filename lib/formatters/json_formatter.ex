@@ -24,9 +24,10 @@ defmodule PrettyLoggex.Formatters.JsonFormatter do
       """
   end
 
-  defp format_value({key, value})
-       when is_pid(value),
-       do: {key, inspect(value)}
-
-  defp format_value(kv), do: kv
+  defp format_value({key, value}) when is_pid(value), do: {key, inspect(value)}
+  defp format_value({key, value}) when is_reference(value), do: {key, inspect(value)}
+  defp format_value({key, value}) when is_port(value), do: {key, inspect(value)}
+  defp format_value({key, value}) when is_tuple(value), do: {key, inspect(value)}
+  defp format_value({key, value}) when is_list(value), do: {key, inspect(value)}
+  defp format_value({key, value}), do: {key, value}
 end
