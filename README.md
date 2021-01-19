@@ -18,7 +18,7 @@ PrettyLoggex is a customization for [Elixir.Logger](https://hexdocs.pm/logger/Lo
 > ```elixir
 > def deps do
 >   [
->     {:pretty_loggex, "~> 1.0.1"}
+>     {@application, "~> 1.0.6"}
 >   ]
 > end
 > ```
@@ -57,7 +57,7 @@ Add `pretty_loggex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:pretty_loggex, "~> 1.0.1"}
+    {@application, "~> 1.0.6"}
   ]
 end
 ```
