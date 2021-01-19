@@ -28,8 +28,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-mix-prod-
 
-    - name: Update Version
-      run: elixir ./scripts/update_version.exs
 
     - name: Install Dependencies
       run: mix deps.get
@@ -39,6 +37,9 @@ jobs:
         MIX_ENV: prod
       run: mix deps.compile
 
+    - name: Update Version
+      run: elixir ./scripts/update_version.exs
+    
     - name: Build PrettyLoggex
       env:
         MIX_ENV: prod

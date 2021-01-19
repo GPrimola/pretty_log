@@ -25,7 +25,6 @@ defmodule PrettyLoggex.Formatters.KvFormatter do
 
   defp to_kv({key, value})
        when is_atom(value) or
-              is_list(value) or
               is_integer(value) or
               is_float(value),
        do: "#{key}=#{value}"
