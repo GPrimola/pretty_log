@@ -46,7 +46,6 @@ PrettyLoggex is a customization for [Elixir.Logger](https://hexdocs.pm/logger/Lo
 - [Installation](#installation)
 - [Usage](#usage)
 - [Examples](#examples)
-- [About SumUp](#about-sumup)
 
 
 
@@ -126,4 +125,4 @@ timestamp="2020-02-04T16:47:06.791Z" level=error pid=#PID<0.204.0> line=8 functi
 
 ### Maintainers
 
-- [Giorgio Lucas Torres](mailto:lucas.primola@gmail.com)
+- [Giorgio Torres](https://techhub.social/@giorgiolucas)
