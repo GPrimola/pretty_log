@@ -3,7 +3,7 @@ defmodule UpdateVersion do
   @mix_exs_file "./mix.exs"
   @readme_file "./README.md"
   @mix_version_regex ~r/@version \"(?<version>.*)\"/
-  @readme_version_regex ~r/{:yamel, \"~> (?<version>.*)\"}/
+  @readme_version_regex ~r/{:pretty_loggex, \"~> (?<version>.*)\"}/
 
   def update() do
     with {:ok, version} <- get_version(),
@@ -51,7 +51,7 @@ defmodule UpdateVersion do
 
   def update_readme(readme, version) do
     IO.puts("Updating #{@readme_file}...")
-    readme = String.replace(readme, @readme_version_regex, "{:yamel, \"~> #{version}\"}")
+    readme = String.replace(readme, @readme_version_regex, "{:pretty_loggex, \"~> #{version}\"}")
 
     case File.write!(@readme_file, readme) do
       :ok ->
