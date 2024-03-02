@@ -12,14 +12,14 @@ jobs:
         otp: ['22.3.4.26']
         elixir: ['1.8.2']
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           deps
@@ -45,14 +45,14 @@ jobs:
     runs-on: ubuntu-20.04
     needs: build
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           deps
@@ -68,14 +68,14 @@ jobs:
     runs-on: ubuntu-20.04
     needs: build
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           deps
@@ -89,14 +89,14 @@ jobs:
     runs-on: ubuntu-20.04
     needs: build
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           deps
@@ -113,7 +113,7 @@ jobs:
       MIX_ENV: test
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
@@ -121,7 +121,7 @@ jobs:
           otp-version: '22.3.4.26'
 
       - name: Cache Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             deps

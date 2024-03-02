@@ -11,14 +11,14 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           _build/prod/lib
@@ -49,14 +49,14 @@ jobs:
     runs-on: ubuntu-20.04
     needs: build
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           _build/prod/lib
@@ -78,7 +78,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
@@ -99,7 +99,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_ACTIONS_USER }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Tag Release
         run: |
           git config user.name Lucasbot
@@ -115,14 +115,14 @@ jobs:
     runs-on: ubuntu-20.04
     needs: tag_release
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
         elixir-version: '1.8.2'
         otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           _build/prod/lib
