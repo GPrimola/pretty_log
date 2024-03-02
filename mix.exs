@@ -45,9 +45,9 @@ defmodule PrettyLoggex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:jason, "~> 1.1"},
-      {:ex_doc, "~> 0.22.0", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.13.2", only: :test},
+      {:jason, "~> 1.4"},
+      {:ex_doc, "~> 0.31.1", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.16.1", only: :test},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
