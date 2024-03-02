@@ -46,8 +46,8 @@ defmodule PrettyLoggex.MixProject do
   defp deps do
     [
       {:jason, "~> 1.4"},
-      {:ex_doc, "~> 0.31.1", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.16.1", only: :test},
+      {:ex_doc, "~> 0.22.6", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.15.3", only: :test},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
