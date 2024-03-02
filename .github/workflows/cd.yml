@@ -9,38 +9,36 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Elixir
-      uses: actions/setup-elixir@v1
+      uses: erlef/setup-beam@v1
       with:
-        elixir-version: '1.8.x'
-        otp-version: '22.3'
+        elixir-version: '1.8.2'
+        otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
+          _build/prod/lib
           deps
           doc
+          mix.exs
+          mix.lock
         key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
         restore-keys: |
           ${{ runner.os }}-mix-prod-
 
-
     - name: Install Dependencies
       run: mix deps.get
 
-    - name: Build Dependencies
+    - name: Compile Dependencies
       env:
         MIX_ENV: prod
       run: mix deps.compile
 
-    - name: Update Version
-      run: elixir ./scripts/update_version.exs
-    
-    - name: Build PrettyLoggex
+    - name: Compile PrettyLoggex
       env:
         MIX_ENV: prod
       run: mix compile
@@ -48,67 +46,78 @@ jobs:
     - name: Build Docs
       run: mix docs
 
-    - name: Update repo with new version
-      run: |
-        git config user.name Lucasbot
-        git config user.email lucas.primola@gmail.com
-        git status
-        if [[ -n $(git diff --stat) ]]
-        then
-          git commit -am "Updated README.md and mix.exs to version $(cat VERSION)."
-          git push origin master
-        else
-          echo "Already updated with version."
-        fi
 
-  
   check_package:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: build
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Elixir
-      uses: actions/setup-elixir@v1
+      uses: erlef/setup-beam@v1
       with:
-        elixir-version: '1.8.x'
-        otp-version: '22.3'
+        elixir-version: '1.8.2'
+        otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
+          _build/prod/lib
           deps
           doc
+          mix.exs
+          mix.lock
         key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
         restore-keys: |
           ${{ runner.os }}-mix-prod-
-
     - env:
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
       run: mix hex.publish --dry-run
 
 
-  publish_package:
-    runs-on: ubuntu-latest
+  update_version:
+    runs-on: ubuntu-20.04
     needs: check_package
-
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: '1.8.2'
+          otp-version: '22.3.4.26'
+          version-type: 'strict'
+      - name: Update README.md and mix.exs
+        run: elixir ./scripts/update_version.exs
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Updated README.md and mix.exs to version $(cat version).
+
+
+  publish_package:
+    runs-on: ubuntu-20.04
+    needs: update_version
+    steps:
+    - uses: actions/checkout@v3
     - name: Set up Elixir
-      uses: actions/setup-elixir@v1
+      uses: erlef/setup-beam@v1
       with:
-        elixir-version: '1.8.x'
-        otp-version: '22.3'
+        elixir-version: '1.8.2'
+        otp-version: '22.3.4.26'
     - name: Cache Dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
+          _build/prod/lib
           deps
           doc
+          mix.exs
+          mix.lock
         key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
         restore-keys: |
           ${{ runner.os }}-mix-prod-
-
     - name: Publish package to hex.pm
       env:
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
