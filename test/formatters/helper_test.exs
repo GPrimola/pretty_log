@@ -14,7 +14,7 @@ defmodule PrettyLoggex.Formatters.HelperTest do
       h = String.pad_leading("#{h}", 2, "0")
       min = String.pad_leading("#{min}", 2, "0")
       s = String.pad_leading("#{s}", 2, "0")
-      ms = String.pad_leading("#{ms}", 2, "0")
+      ms = String.pad_leading("#{ms}", 3, "0")
 
       assert Helper.format_timestamp(timestamp) ==
                "#{y}-#{m}-#{d}T#{h}:#{min}:#{s}.#{ms}Z"
