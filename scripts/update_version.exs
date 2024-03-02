@@ -1,5 +1,5 @@
 defmodule UpdateVersion do
-  @version_file "./version"
+  @version_file "./VERSION"
   @mix_exs_file "./mix.exs"
   @readme_file "./README.md"
   @mix_version_regex ~r/@version \"(?<version>.*)\"/
