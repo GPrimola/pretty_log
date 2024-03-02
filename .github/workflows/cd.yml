@@ -70,50 +70,13 @@ jobs:
       run: mix hex.publish --dry-run
 
 
-  update_version:
+  update_and_publish:
     runs-on: ubuntu-20.04
     needs: check_package
     permissions:
       contents: write
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
-        with:
-          elixir-version: '1.8.2'
-          otp-version: '22.3.4.26'
-          version-type: 'strict'
-      - name: Update README.md and mix.exs
-        run: elixir ./scripts/update_version.exs
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Updated README.md and mix.exs to version $(cat VERSION).
-
-
-  tag_release:
-    runs-on: ubuntu-20.04
-    needs: update_version
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_ACTIONS_USER }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Tag Release
-        run: |
-          git config user.name Lucasbot
-          git config user.email lucas.primola@gmail.com
-          if git tag releases/$(cat VERSION); then
-            git push origin releases/$(cat VERSION) -f
-          else
-            echo "Version already exists."
-          fi
-
-
-  publish_package:
-    runs-on: ubuntu-20.04
-    needs: tag_release
     steps:
     - uses: actions/checkout@v4
     - name: Set up Elixir
@@ -131,6 +94,20 @@ jobs:
         key: ${{ runner.os }}-mix-prod-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
         restore-keys: |
           ${{ runner.os }}-mix-prod-
+    - name: Update README.md and mix.exs
+      run: elixir ./scripts/update_version.exs
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Updated README.md and mix.exs to version $(cat VERSION).
+    - name: Tag Release
+      run: |
+        git config user.name Lucasbot
+        git config user.email lucas.primola@gmail.com
+        if git tag releases/$(cat VERSION); then
+          git push origin releases/$(cat VERSION) -f
+        else
+          echo "Version already exists."
+        fi
     - name: Publish package to hex.pm
       env:
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
